@@ -147,7 +147,7 @@ button { font: inherit; }
 }
 .arch::before { content: ""; position: absolute; inset: -14px; border-radius: 999px 999px 42px 42px; border: 1.5px dashed var(--orchid); opacity: .8; }
 .arch::after  { content: ""; position: absolute; inset: 10px; border-radius: 999px 999px 24px 24px; border: 1px solid var(--line); }
-.ganesha { position: relative; z-index: 1; width: 66%; filter: drop-shadow(0 8px 12px rgba(78, 45, 153, .22)); }
+.ganesha { position: relative; z-index: 1; width: 72%; height: auto; filter: drop-shadow(0 8px 12px rgba(78, 45, 153, .22)); }
 
 .couple-box {
   position: relative; padding: 1.5rem 1.25rem 1.35rem; text-align: center;
@@ -300,7 +300,7 @@ button { font: inherit; }
 .fam-card li em { font-style: normal; flex: none; padding: .1rem .8rem; border-radius: 999px; background: var(--bg-soft); font-size: .88rem; font-weight: 600; color: var(--violet-deep); }
 @media (max-width: 440px) { .fam-card li { flex-direction: column; align-items: flex-start; gap: .1rem; } }
 .fam-close { margin-top: clamp(1.6rem, 4vw, 2.6rem); text-align: center; }
-.namaste { width: 78px; margin: 0 auto .7rem; }
+.namaste { width: 76px; height: auto; margin: 0 auto .8rem; }
 .closing { font: 700 clamp(1.2rem, 3.4vw, 1.6rem)/1.7 var(--f-ta); color: var(--plum); }
 
 /* ---------- venue ---------- */
@@ -338,7 +338,7 @@ button { font: inherit; }
 
 /* ---------- footer ---------- */
 .footer { margin-top: clamp(56px, 8vw, 110px); padding: clamp(32px, 5vw, 56px) 16px clamp(36px, 5vw, 56px); text-align: center; background: linear-gradient(180deg, transparent, #e4d6f8 90%); border-top: 1px solid var(--line); }
-.baraat { width: min(100%, 680px); margin: 0 auto 1.2rem; }
+.baraat { width: min(100%, 440px); height: auto; margin: 0 auto 1.2rem; }
 .footer-line { font: 700 clamp(1.05rem, 3vw, 1.4rem)/1.7 var(--f-ta); color: var(--plum); }
 
 /* ---------- motion ---------- */
