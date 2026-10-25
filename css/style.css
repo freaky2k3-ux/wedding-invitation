@@ -174,6 +174,7 @@ button { font: inherit; }
 .countdown-note { margin-top: .7rem; text-align: center; font: italic 600 1.08rem var(--f-serif); color: var(--ink-500); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; margin-top: 1.3rem; }
 @media (min-width: 901px) { .hero-cta, .countdown-note { text-align: left; justify-content: flex-start; } }
+.hero-cta .btn { padding-inline: 1.05rem; }
 
 /* ---------- sections ---------- */
 .section { width: min(var(--wrap), 100% - 32px); margin: 0 auto; padding: clamp(44px, 7vw, 88px) 0 0; }
@@ -354,8 +355,28 @@ button { font: inherit; }
 /* ---------- wide screens ---------- */
 @media (min-width: 1500px) { :root { --wrap: 1280px; } }
 
+/* ---------- print / PDF (A4, one section per page, both languages shown) ---------- */
+@page { size: A4; margin: 0; }   /* zero margin so the lavender background reaches the paper edge; spacing is applied below */
 @media print {
-  .nav, .btn, .countdown, .countdown-note, .hero-cta { display: none !important; }
-  body { background: #fff; }
-  .js .reveal { opacity: 1 !important; transform: none !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html { font-size: 12px; }
+  body { background: var(--bg); overflow: visible; min-height: 0; }
+  .nav, .skip, .btn, .countdown, .countdown-note, .hero-cta, .lang-switch, .qr-actions, .hero::before { display: none !important; }
+  .js .reveal { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .page[hidden] { display: block !important; }
+  .page-en[hidden] { display: flex !important; }
+  .pages .page + .page { break-before: page; position: relative; top: 10mm; }
+  .page, .event, .fam-card, .bus, .qr-card, .couple-box, .sender { break-inside: avoid; }
+  .event:hover, .fam-card:hover { transform: none; }
+
+  .hero { height: 290mm; display: flex; align-items: center; padding: 10mm 0 0; overflow: visible; break-after: page; }
+  .section { width: calc(100% - 24mm); padding-top: 0; }
+  .hero-grid { width: calc(100% - 40mm); }
+  #invitation, #events, #venue { break-before: page; padding-top: 11mm; }
+  #family { padding-top: 2.2rem; }
+  .section-head { margin-bottom: 1.2rem; }
+  .footer { margin-top: 2rem; padding-top: 1.5rem; }
+  .hero-title { background: none; -webkit-text-fill-color: currentColor; color: var(--violet-deep); }
+  .events, .fam-grid, .venue { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+  .event { grid-template-columns: minmax(0, 1fr); justify-items: start; align-content: start; }
 }
