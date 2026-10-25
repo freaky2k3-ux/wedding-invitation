@@ -148,6 +148,38 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
   }
 
+  /* ---------- invitation language ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.lang-switch [role="tab"]'));
+  var pages = { ta: document.getElementById('page-ta'), en: document.getElementById('page-en') };
+  function showLang(lang, focus) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-lang') === lang;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    Object.keys(pages).forEach(function (k) {
+      var on = k === lang, el = pages[k];
+      el.hidden = !on;
+      if (on) { el.classList.add('in'); el.classList.remove('swap'); void el.offsetWidth; el.classList.add('swap'); }
+    });
+    try { localStorage.setItem('inviteLang', lang); } catch (e) {}
+  }
+  if (tabs.length) {
+    var saved = null;
+    try { saved = localStorage.getItem('inviteLang'); } catch (e) {}
+    showLang(saved === 'en' ? 'en' : 'ta', false);
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { showLang(t.getAttribute('data-lang'), false); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? i - 1 : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+        if (n < 0) return;
+        e.preventDefault();
+        showLang(tabs[(n + tabs.length) % tabs.length].getAttribute('data-lang'), true);
+      });
+    });
+  }
+
   /* ---------- mobile menu ---------- */
   var toggle = document.getElementById('nav-toggle');
   var menu = document.getElementById('nav-menu');

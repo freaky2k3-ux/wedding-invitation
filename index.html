@@ -108,13 +108,15 @@
         <p class="eyebrow">Invitation</p>
         <h2 lang="ta">திருமண அழைப்பிதழ்</h2>
         <div class="orn" aria-hidden="true"><i></i></div>
-        <p class="sub">Both pages of the printed card, exactly as written.</p>
+        <div class="lang-switch" role="tablist" aria-label="Invitation language / அழைப்பிதழ் மொழி">
+          <button type="button" role="tab" id="tab-ta" data-lang="ta" aria-controls="page-ta" aria-selected="true" lang="ta">தமிழ்</button>
+          <button type="button" role="tab" id="tab-en" data-lang="en" aria-controls="page-en" aria-selected="false" tabindex="-1">English</button>
+        </div>
       </div>
 
       <div class="pages">
         <!-- English page (left page of the card) -->
-        <article class="page page-en reveal" lang="en" aria-label="Wedding Invitation in English">
-          <p class="page-tag">English</p>
+        <article class="page page-en reveal" id="page-en" role="tabpanel" aria-labelledby="tab-en" lang="en" aria-label="Wedding Invitation in English">
           <p class="udhayam small" lang="ta" aria-hidden="true">உ</p>
           <p class="thunai">
             Arulmigu Ammaiyar Amman Thunai<br>
@@ -138,8 +140,7 @@
         </article>
 
         <!-- Tamil page (right page of the card) -->
-        <article class="page page-ta reveal" lang="ta" aria-label="திருமண அழைப்பிதழ்">
-          <p class="page-tag">தமிழ்</p>
+        <article class="page page-ta reveal" id="page-ta" role="tabpanel" aria-labelledby="tab-ta" lang="ta" aria-label="திருமண அழைப்பிதழ்">
           <p class="udhayam small" aria-hidden="true">உ</p>
           <p class="thunai">
             அருள்மிகு அம்மையார் அம்மன் துணை<br>
